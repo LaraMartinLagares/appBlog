@@ -1,5 +1,7 @@
 const router = require('express').Router();
 
+const { getAllAuthors, getAuthorById, createAuthor, updateAuthor, deleteAuthor } = require('../../controllers/authors.controller');
+
 
 router.get('/', getAllAuthors);
 router.get('/:id_author', getAuthorById);

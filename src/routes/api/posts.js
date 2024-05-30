@@ -1,5 +1,7 @@
 const router = require('express').Router();
 
+const { getAllPosts, getPostById, getPostsByAuthor, createPost, updatePost, deletePost } = require('../../controllers/posts.controller');
+
 
 router.get('/', getAllPosts);
 router.get('/:id_post', getPostById);
