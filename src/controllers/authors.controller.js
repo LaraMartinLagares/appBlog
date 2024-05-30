@@ -5,7 +5,7 @@ const getAllAuthors = async (req, res, next) => {
 
     try {
         const [authors] = await Author.selectAllAuthors();  
-        res.json(result);
+        res.json(authors);
     } catch (error) {
         next(error);
     }
@@ -21,7 +21,7 @@ const getAuthorById = async (req, res,  next) => {
             return res.status(404).json({ error: 'Autor no encontrado'});
         }
 
-        res.json(result[0]);
+        res.json(author[0]);
 
     } catch (error) {
         next(error);
@@ -32,7 +32,7 @@ const getAuthorById = async (req, res,  next) => {
 const createAuthor = async (req, res, next) => {
 
     try {
-        const [result] = await Author.insert(req.body);
+        const [result] = await Author.insertAuthor(req.body);
         const [[author]] = await Author.selectAuthorById(result.insertId); 
         res.json(author);
 
@@ -77,7 +77,7 @@ const deleteAuthor = async (req, res, next) => { //los errores de try/catch son 
 };
 
 module.exports = {
-    getAllAuthors, //getAllPacientes = getAllPacientes - Como la clave tiene el mismo nombre que el dato que le da valor, podemos comprimir como getAllPacientes
+    getAllAuthors, 
     getAuthorById,
     createAuthor,
     updateAuthor,
