@@ -95,6 +95,7 @@ const deletePost = async (req, res, next) => { //los errores de try/catch son pr
 module.exports = {
     getAllPosts, 
     getPostById,
+    getPostsByAuthor,
     createPost,
     updatePost,
     deletePost
