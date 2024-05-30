@@ -4,7 +4,7 @@ const Post = require('../models/post.model');
 const getAllPosts = async (req, res, next) => {
 
     try {
-        const [posts] = await Author.selectAllPosts();  
+        const [posts] = await Post.selectAllPosts();  
         res.json(posts);
     } catch (error) {
         next(error);
@@ -34,10 +34,10 @@ const getPostsByAuthor = async (req, res,  next) => {
         const [posts] = await Post.selectPostsByAuthor(req.params.id_author);
 
         if (posts.length === 0) {
-            return res.status(404).json({ error: 'Post no encontrado'});
+            return res.status(404).json({ error: 'No se han encontrado posts para el autor'});
         }
 
-        res.json(posts[0]);
+        res.json(posts);
 
     } catch (error) {
         next(error);
@@ -48,6 +48,7 @@ const getPostsByAuthor = async (req, res,  next) => {
 const createPost = async (req, res, next) => {
 
     try {
+        console.log(req.body);
         const [result] = await Post.insertPost(req.body);
         const [[post]] = await Post.selectPostById(result.insertId); 
         res.json(post);
@@ -61,10 +62,11 @@ const updatePost = async (req, res, next) => {
 
     try {
         const {id_post} = req.params;
+        console.log(req.body);
         const [result] = await Post.updatePostById(id_post, req.body);
         
         if (result.changedRows === 1 ) {
-            const [[post]] = await Author.selectPostById(id_post); 
+            const [[post]] = await Post.selectPostById(id_post); 
             res.json(post);
         } else {
             res.status(400).json({ error: 'Se ha producido un error al actualizar el post' });
