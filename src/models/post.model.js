@@ -1,15 +1,15 @@
 // Funciones con las queries que lanzamos contra la tabla Author
 
 const selectAllPosts = () => {
-    return db.query('SELECT * FROM Post');
+    return db.query('SELECT post.idPost, author.idAuthor, author.name, author.email, author.image, post.title, post.description, post.date, post.category FROM post JOIN author ON post.idAuthor = author.idAuthor');
 }
 
 const selectPostById = (id_post) => {
-    return db.query('SELECT * FROM Post WHERE idPost = ?', [id_post]);
+    return db.query('SELECT post.idPost, author.idAuthor, author.name, author.email, author.image, post.title, post.description, post.date, post.category FROM post JOIN author ON post.idAuthor = author.idAuthor WHERE post.idPost = ?', [id_post]);
 }
 
 const selectPostsByAuthor = (id_author) => {
-    return db.query('SELECT * FROM Post WHERE idAuthor = ?', [id_author]);
+    return db.query('SELECT post.idPost, post.title, post.description, post.date, post.category FROM post WHERE post.idAuthor = ?', [id_author]);
 }
 
 const insertPost = ({idAuthor, title, description, date, category}) => {

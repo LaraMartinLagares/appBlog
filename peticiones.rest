@@ -7,7 +7,7 @@
 GET {{HOST}}/api/authors
 
 ###
-GET {{HOST}}/api/authors/2
+GET {{HOST}}/api/authors/5
 
 ###
 POST {{HOST}}/api/authors
@@ -39,14 +39,18 @@ DELETE {{HOST}}/api/authors/2
 GET {{HOST}}/api/posts
 
 ###
-GET {{HOST}}/api/posts/2
+GET {{HOST}}/api/posts/10
+
+###
+GET {{HOST}}/api/posts/author/5
+
 
 ###
 POST {{HOST}}/api/posts
 Content-Type: application/json
 
 {
-    "idAuthor": 3,
+    "idAuthor": 5,
     "title": "Vacaciones de verano en la playa",
     "description": "Existen muchas opciones para pasar el verano; montaña, playa, ciudad. La mayor parte de la poblaciónp prefiere la playa....",
     "date": "2024-05-30 11:05",
@@ -58,7 +62,7 @@ PUT {{HOST}}/api/posts/2
 Content-Type: application/json
 
 {
-    "idAuthor": 3,
+    "idAuthor": 5,
     "title": "Vacaciones de verano en la montaña",
     "description": "Existen muchas opciones para pasar el verano; montaña, playa, ciudad. La mayor parte de la poblaciónp prefiere la playa....",
     "date": "2024-05-30 11:05",
@@ -66,5 +70,5 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{HOST}}/api/posts/1
+DELETE {{HOST}}/api/posts/10
 
