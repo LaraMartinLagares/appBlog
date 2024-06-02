@@ -13,9 +13,11 @@ const getAllAuthors = async (req, res, next) => {
 
 
 const getAuthorById = async (req, res,  next) => {
+
+    const {id_author} = req.params;
     
     try {
-        const [author] = await Author.selectAuthorById(req.params.id_author);
+        const [author] = await Author.selectAuthorById(id_author);
 
         if (author.length === 0) {
             return res.status(404).json({ error: 'Autor no encontrado'});
@@ -61,11 +63,14 @@ const updateAuthor = async (req, res, next) => {
 };
 
 const deleteAuthor = async (req, res, next) => { //los errores de try/catch son propios de la aplicación (por lo que sea no responde- bbdd caída, fallo de conexión, la api no responde...)
+    
+    const {id_author} = req.params;
+
     try{
-        const { id_author } = req.params;
+        
         const [result] = await Author.deleteAuthorById(id_author);
 
-        if (result.affectedRows === 1){
+        if (result.affectedRows === 1) {
             res.json({ message: 'Se ha borrado el autor y sus posts' });
         } else {
             res.status(404).json({ message: 'El autor no existe' });
@@ -82,4 +87,4 @@ module.exports = {
     createAuthor,
     updateAuthor,
     deleteAuthor
-}
+};

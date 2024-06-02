@@ -1,4 +1,5 @@
 const Post = require('../models/post.model');
+const Author = require('../models/author.model');
 
 
 const getAllPosts = async (req, res, next) => {
@@ -13,9 +14,11 @@ const getAllPosts = async (req, res, next) => {
 
 
 const getPostById = async (req, res,  next) => {
+
+    const {id_post} = req.params;
     
     try {
-        const [post] = await Post.selectPostById(req.params.id_post);
+        const [post] = await Post.selectPostById(id_post);
 
         if (post.length === 0) {
             return res.status(404).json({ error: 'Post no encontrado'});
@@ -29,9 +32,17 @@ const getPostById = async (req, res,  next) => {
 };
 
 const getPostsByAuthor = async (req, res,  next) => {
+
+    const {id_author} = req.params;
     
     try {
-        const [posts] = await Post.selectPostsByAuthor(req.params.id_author);
+        const [author] = await Author.selectAuthorById(id_author);
+
+        if (author.length === 0) {
+            return res.status(404).json({ error: 'Autor no encontrado'});
+        }
+
+        const [posts] = await Post.selectPostsByAuthor(id_author);
 
         if (posts.length === 0) {
             return res.status(404).json({ error: 'No se han encontrado posts para el autor'});
@@ -48,7 +59,6 @@ const getPostsByAuthor = async (req, res,  next) => {
 const createPost = async (req, res, next) => {
 
     try {
-        console.log(req.body);
         const [result] = await Post.insertPost(req.body);
         const [[post]] = await Post.selectPostById(result.insertId); 
         res.json(post);
@@ -60,9 +70,9 @@ const createPost = async (req, res, next) => {
 
 const updatePost = async (req, res, next) => {
 
+    const {id_post} = req.params;
+
     try {
-        const {id_post} = req.params;
-        console.log(req.body);
         const [result] = await Post.updatePostById(id_post, req.body);
         
         if (result.changedRows === 1 ) {
@@ -79,14 +89,16 @@ const updatePost = async (req, res, next) => {
 };
 
 const deletePost = async (req, res, next) => { //los errores de try/catch son propios de la aplicación (por lo que sea no responde- bbdd caída, fallo de conexión, la api no responde...)
-    try{
-        const { id_post } = req.params;
+    
+    const {id_post} = req.params;
+    
+    try {       
         const [result] = await Post.deletePostById(id_post);
 
-        if (result.affectedRows === 1){
+        if (result.affectedRows === 1) {
             res.json({ message: 'Se ha borrado el post' });
         } else {
-            res.status(404).json({ message: 'El `post no existe' });
+            res.status(404).json({ message: 'El post no existe' });
         }
 
     } catch (error) {
@@ -101,4 +113,4 @@ module.exports = {
     createPost,
     updatePost,
     deletePost
-}
+};
