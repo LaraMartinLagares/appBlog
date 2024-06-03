@@ -14,23 +14,23 @@ POST {{HOST}}/api/authors
 Content-Type: application/json
 
 {
-    "name": "Antonio Martín Lagares",
-    "email": "antonio.martin.lagares@gmail.com",
-    "image": "antonio.png"
+    "name": "Antonio López Ruíz",
+    "email": "antonio.lopez.ruiz@gmail.com",
+    "image": "fernando.png"
 }
 
 ###
-PUT {{HOST}}/api/authors/1
+PUT {{HOST}}/api/authors/6
 Content-Type: application/json
 
 {
-    "name": "Lara Lagares",
-    "email": "lara.martin.lagares@gmail.com",
-    "image": "laramartin.png" 
+    "name": "Antonio López Cano",
+    "email": "antonio.lopez.cano@gmail.com",
+    "image": "antonio.png" 
 }
 
 ###
-DELETE {{HOST}}/api/authors/5
+DELETE {{HOST}}/api/authors/8
 
 
 
@@ -39,7 +39,7 @@ DELETE {{HOST}}/api/authors/5
 GET {{HOST}}/api/posts
 
 ###
-GET {{HOST}}/api/posts/25
+GET {{HOST}}/api/posts/10
 
 ###
 GET {{HOST}}/api/posts/author/4
@@ -51,24 +51,24 @@ Content-Type: application/json
 
 {
     "idAuthor": 4,
-    "title": "Vacaciones de verano en la playa",
-    "description": "Existen muchas opciones para pasar el verano; montaña, playa, ciudad. La mayor parte de la poblaciónp prefiere la playa....",
-    "date": "2024-05-30 11:05",
-    "category": "Ocio"
+    "title": "Cómo Comprar en Tiendas de Segunda Mano y Encontrar Tesoros Único",
+    "description": "Comprar en tiendas de segunda mano es una excelente manera de encontrar piezas únicas y sostenibles. Con estos consejos, podrás descubrir verdaderos tesoros y renovar tu guardarropa de manera económica y ecológica. Ten Paciencia: La clave para encontrar buenas piezas en tiendas de segunda mano es tener paciencia. Tómate tu tiempo para revisar las estanterías y los percheros detenidamente. Conoce tus Medidas: Lleva contigo una cinta métrica y conoce tus medidas. Las tallas pueden variar según la marca y la época, así que es mejor asegurarse de que algo te quede bien. Busca Calidad: Fíjate en la calidad de las telas y las costuras. Busca piezas que estén en buen estado y que sean de materiales duraderos.",
+    "date": "2024-01-28",
+    "category": "Moda"
 }
 
 ###
-PUT {{HOST}}/api/posts/6
+PUT {{HOST}}/api/posts/11
 Content-Type: application/json
 
 {
-    "idAuthor": 3,
-    "title": "Vacaciones de verano en la playa",
+    "idAuthor": 6,
+    "title": "Sin vacaciones de verano",
     "description": "Existen muchas opciones para pasar el verano; montaña, playa, ciudad. La mayor parte de la poblaciónp prefiere la playa....",
     "date": "2024-05-30 11:05",
     "category":  "Ocio"
 }
 
 ###
-DELETE {{HOST}}/api/posts/23
+DELETE {{HOST}}/api/posts/13
 
