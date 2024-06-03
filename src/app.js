@@ -8,6 +8,17 @@ app.use(cors());
 
 // Configuración de rutas
 
+app.use('/api', require('./routes/api'));
+
+
+// Middleware error
+
+app.use((err, req, res, next) => {
+    res.status(500).json({ error: err.message }); //Todas las excepciones de javascript tienen la propiedad message donde explican un poco de qué va el error.
+    next();
+});
+
+
 
 
 module.exports = app;
