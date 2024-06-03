@@ -24,7 +24,7 @@ PUT {{HOST}}/api/authors/1
 Content-Type: application/json
 
 {
-    "name": "Lara Martín Lagares",
+    "name": "Lara Lagares",
     "email": "lara.martin.lagares@gmail.com",
     "image": "laramartin.png" 
 }
